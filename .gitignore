@@ -1,0 +1,10 @@
+data/
+analysis/reports/
+__pycache__/
+*.pyc
+*.egg-info/
+.venv/
+*.pdf
+*.mp4
+*.zip
+!data/.gitkeep
