@@ -1,0 +1,40 @@
+{
+  "total_dated_entries": 7,
+  "entries": [
+    {
+      "date": "2022-05-17",
+      "file": "data/congress/House_Intel_Subcommittee_UAP_Hearing_20220517.pdf",
+      "source": "congress"
+    },
+    {
+      "date": "2022-07-26",
+      "file": "data/congress/House_Intel_Subcommittee_UAP_Hearing_20220726.pdf",
+      "source": "congress"
+    },
+    {
+      "date": "2023",
+      "file": "data/disclosure_act/NDAA_FY2023_UAP_Provisions.pdf",
+      "source": "disclosure_act"
+    },
+    {
+      "date": "2023-07-26",
+      "file": "data/congress/House_Oversight_UAP_Hearing_20230726.pdf",
+      "source": "congress"
+    },
+    {
+      "date": "2023-11-13",
+      "file": "data/congress/House_Oversight_UAP_Hearing_20231113.pdf",
+      "source": "congress"
+    },
+    {
+      "date": "2024",
+      "file": "data/disclosure_act/NDAA_FY2024_UAP_Provisions.pdf",
+      "source": "disclosure_act"
+    },
+    {
+      "date": "2024-03-08",
+      "file": "data/aaro/AARO_Historical_Record_Report_Executive_Summary_20240308.pdf",
+      "source": "aaro"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "data/aaro/AARO_Historical_Record_Report_Executive_Summary_20240308.pdf": [
+    "aaro_reports"
+  ],
+  "data/congress/House_Oversight_UAP_Hearing_20231113.pdf": [
+    "hearing"
+  ],
+  "data/congress/House_Intel_Subcommittee_UAP_Hearing_20220726.pdf": [
+    "hearing"
+  ],
+  "data/congress/House_Intel_Subcommittee_UAP_Hearing_20220517.pdf": [
+    "hearing"
+  ],
+  "data/congress/House_Oversight_UAP_Hearing_20230726.pdf": [
+    "hearing"
+  ],
+  "data/disclosure_act/NDAA_FY2023_UAP_Provisions.pdf": [
+    "disclosure_legislation"
+  ],
+  "data/disclosure_act/NDAA_FY2024_UAP_Provisions.pdf": [
+    "disclosure_legislation"
+  ],
+  "data/nasa/_nasa_uap_page.html": [
+    "nasa_study"
+  ]
+}
