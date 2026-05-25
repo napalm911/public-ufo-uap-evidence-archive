@@ -1,0 +1,33 @@
+.topic-card {
+  display: block;
+  padding: var(--space-5);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: border-color 0.15s;
+}
+
+.topic-card:hover {
+  border-color: var(--accent-dim);
+}
+
+.topic-card h3 {
+  font-size: 1rem;
+  margin-bottom: var(--space-2);
+  color: var(--text);
+}
+
+.topic-card:hover h3 {
+  color: var(--accent);
+}
+
+.topic-count {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.topic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-4);
+}

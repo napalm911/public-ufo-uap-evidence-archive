@@ -1,0 +1,189 @@
+{
+  "generated": "2026-05-24T09:53:22.552561",
+  "total_files": 14,
+  "files": [
+    {
+      "id": "data/aaro/AARO_Historical_Record_Report_Executive_Summary_20240308.pdf",
+      "path": "data/aaro/AARO_Historical_Record_Report_Executive_Summary_20240308.pdf",
+      "filename": "AARO_Historical_Record_Report_Executive_Summary_20240308.pdf",
+      "source": "aaro",
+      "extension": ".pdf",
+      "size_bytes": 726657,
+      "modified": "2026-05-24T09:53:03.236989",
+      "topics": [
+        "aaro_reports"
+      ],
+      "date": "2024-03-08"
+    },
+    {
+      "id": "data/cia_crest/CIA_OSI_UFO_Assessment_1960.pdf",
+      "path": "data/cia_crest/CIA_OSI_UFO_Assessment_1960.pdf",
+      "filename": "CIA_OSI_UFO_Assessment_1960.pdf",
+      "source": "cia_crest",
+      "extension": ".pdf",
+      "size_bytes": 6738642,
+      "modified": "2026-05-24T09:53:06.395275",
+      "topics": [
+        "cia_documents"
+      ],
+      "date": "1960"
+    },
+    {
+      "id": "data/congress/House_Intel_Subcommittee_UAP_Hearing_20220517.pdf",
+      "path": "data/congress/House_Intel_Subcommittee_UAP_Hearing_20220517.pdf",
+      "filename": "House_Intel_Subcommittee_UAP_Hearing_20220517.pdf",
+      "source": "congress",
+      "extension": ".pdf",
+      "size_bytes": 35765,
+      "modified": "2026-05-24T09:53:08.490663",
+      "topics": [
+        "hearing"
+      ],
+      "date": "2022-05-17"
+    },
+    {
+      "id": "data/congress/House_Intel_Subcommittee_UAP_Hearing_20220726.pdf",
+      "path": "data/congress/House_Intel_Subcommittee_UAP_Hearing_20220726.pdf",
+      "filename": "House_Intel_Subcommittee_UAP_Hearing_20220726.pdf",
+      "source": "congress",
+      "extension": ".pdf",
+      "size_bytes": 35765,
+      "modified": "2026-05-24T09:53:08.659790",
+      "topics": [
+        "hearing"
+      ],
+      "date": "2022-07-26"
+    },
+    {
+      "id": "data/congress/House_Oversight_UAP_Hearing_20230726.pdf",
+      "path": "data/congress/House_Oversight_UAP_Hearing_20230726.pdf",
+      "filename": "House_Oversight_UAP_Hearing_20230726.pdf",
+      "source": "congress",
+      "extension": ".pdf",
+      "size_bytes": 35765,
+      "modified": "2026-05-24T09:53:08.833120",
+      "topics": [
+        "hearing"
+      ],
+      "date": "2023-07-26"
+    },
+    {
+      "id": "data/congress/House_Oversight_UAP_Hearing_20231113.pdf",
+      "path": "data/congress/House_Oversight_UAP_Hearing_20231113.pdf",
+      "filename": "House_Oversight_UAP_Hearing_20231113.pdf",
+      "source": "congress",
+      "extension": ".pdf",
+      "size_bytes": 35765,
+      "modified": "2026-05-24T09:53:09.036462",
+      "topics": [
+        "hearing"
+      ],
+      "date": "2023-11-13"
+    },
+    {
+      "id": "data/disclosure_act/NDAA_FY2023_UAP_Provisions.pdf",
+      "path": "data/disclosure_act/NDAA_FY2023_UAP_Provisions.pdf",
+      "filename": "NDAA_FY2023_UAP_Provisions.pdf",
+      "source": "disclosure_act",
+      "extension": ".pdf",
+      "size_bytes": 4646080,
+      "modified": "2026-05-24T09:53:09.702585",
+      "topics": [
+        "disclosure_legislation"
+      ],
+      "date": "2023"
+    },
+    {
+      "id": "data/disclosure_act/NDAA_FY2024_UAP_Provisions.pdf",
+      "path": "data/disclosure_act/NDAA_FY2024_UAP_Provisions.pdf",
+      "filename": "NDAA_FY2024_UAP_Provisions.pdf",
+      "source": "disclosure_act",
+      "extension": ".pdf",
+      "size_bytes": 480617,
+      "modified": "2026-05-24T09:53:10.044774",
+      "topics": [
+        "disclosure_legislation"
+      ],
+      "date": "2024"
+    },
+    {
+      "id": "data/nasa/_nasa_uap_page.html",
+      "path": "data/nasa/_nasa_uap_page.html",
+      "filename": "_nasa_uap_page.html",
+      "source": "nasa",
+      "extension": ".html",
+      "size_bytes": 266539,
+      "modified": "2026-05-24T09:53:12.768863",
+      "topics": [
+        "nasa_study"
+      ],
+      "date": null
+    },
+    {
+      "id": "data/pentagon/_AARO_Director_SASC_Statement_202310.html",
+      "path": "data/pentagon/_AARO_Director_SASC_Statement_202310.html",
+      "filename": "_AARO_Director_SASC_Statement_202310.html",
+      "source": "pentagon",
+      "extension": ".html",
+      "size_bytes": 63675,
+      "modified": "2026-05-24T09:53:22.482095",
+      "topics": [
+        "hearing",
+        "aaro_reports"
+      ],
+      "date": "2023"
+    },
+    {
+      "id": "data/pentagon/_DoD_AARO_Establishment_20220720.html",
+      "path": "data/pentagon/_DoD_AARO_Establishment_20220720.html",
+      "filename": "_DoD_AARO_Establishment_20220720.html",
+      "source": "pentagon",
+      "extension": ".html",
+      "size_bytes": 98714,
+      "modified": "2026-05-24T09:53:18.888561",
+      "topics": [
+        "aaro_reports"
+      ],
+      "date": "2022-07-20"
+    },
+    {
+      "id": "data/pentagon/_DoD_AARO_HRR_Vol1_Release_20240308.html",
+      "path": "data/pentagon/_DoD_AARO_HRR_Vol1_Release_20240308.html",
+      "filename": "_DoD_AARO_HRR_Vol1_Release_20240308.html",
+      "source": "pentagon",
+      "extension": ".html",
+      "size_bytes": 98714,
+      "modified": "2026-05-24T09:53:19.772600",
+      "topics": [
+        "aaro_reports"
+      ],
+      "date": "2024-03-08"
+    },
+    {
+      "id": "data/pentagon/_DoD_AARO_HRR_Vol2_Release_20241114.html",
+      "path": "data/pentagon/_DoD_AARO_HRR_Vol2_Release_20241114.html",
+      "filename": "_DoD_AARO_HRR_Vol2_Release_20241114.html",
+      "source": "pentagon",
+      "extension": ".html",
+      "size_bytes": 98714,
+      "modified": "2026-05-24T09:53:20.969273",
+      "topics": [
+        "aaro_reports"
+      ],
+      "date": "2024-11-14"
+    },
+    {
+      "id": "data/pentagon/_DoD_UAP_Video_Release_20200427.html",
+      "path": "data/pentagon/_DoD_UAP_Video_Release_20200427.html",
+      "filename": "_DoD_UAP_Video_Release_20200427.html",
+      "source": "pentagon",
+      "extension": ".html",
+      "size_bytes": 98714,
+      "modified": "2026-05-24T09:53:17.891263",
+      "topics": [
+        "virginia_incidents"
+      ],
+      "date": "2020-04-27"
+    }
+  ]
+}

@@ -6,6 +6,7 @@ Creates:
 - timeline.json (chronological ordering of documents)
 - topic_tags.json (topic-tagged document map)
 - source_index.json (per-source summary)
+- files.json (full per-file catalog for browsing)
 
 Usage:
     python scripts/generate_metadata.py
@@ -27,6 +28,8 @@ def scan_all_files() -> dict:
     
     for source_dir in sorted(DATA_DIR.iterdir()):
         if not source_dir.is_dir() or source_dir.name.startswith("."):
+            continue
+        if source_dir.name in ("vector_store",):
             continue
         
         source_key = source_dir.name
@@ -130,6 +133,35 @@ def build_topic_tags(catalog: dict) -> dict:
     return tag_map
 
 
+def build_files_catalog(catalog: dict, tag_map: dict, timeline: list) -> dict:
+    """Build enriched per-file catalog joining topics and dates."""
+    date_by_path = {entry["file"]: entry["date"] for entry in timeline}
+
+    files = []
+    for f in catalog["all_files"]:
+        path = f["path"]
+        files.append(
+            {
+                "id": path,
+                "path": path,
+                "filename": f["filename"],
+                "source": f["source"],
+                "extension": f["extension"],
+                "size_bytes": f["size_bytes"],
+                "modified": f["modified"],
+                "topics": tag_map.get(path, []),
+                "date": date_by_path.get(path),
+            }
+        )
+
+    files.sort(key=lambda x: (x["source"], x["filename"]))
+    return {
+        "generated": datetime.now().isoformat(),
+        "total_files": len(files),
+        "files": files,
+    }
+
+
 def main():
     print("Generating metadata indexes...")
     METADATA_DIR.mkdir(parents=True, exist_ok=True)
@@ -178,6 +210,12 @@ def main():
     with open(METADATA_DIR / "topic_tags.json", "w") as f:
         json.dump(tag_map, f, indent=2)
     print(f"  ✓ topic_tags.json ({len(tag_map)} tagged files)")
+
+    # 5. Full file catalog for browsing
+    files_catalog = build_files_catalog(catalog, tag_map, timeline)
+    with open(METADATA_DIR / "files.json", "w") as f:
+        json.dump(files_catalog, f, indent=2)
+    print(f"  ✓ files.json ({files_catalog['total_files']} files)")
     
     print("\n✓ Metadata generation complete!")
 

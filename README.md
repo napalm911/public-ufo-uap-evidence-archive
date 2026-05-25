@@ -4,116 +4,180 @@
 
 **Purpose:** Provide a machine-readable, AI-analysis-ready archive of all U.S. government-released UFO/UAP evidence — documents, briefings, videos, reports, and metadata — organized by source for research, analysis, and content creation.
 
-**Self-contained:** This repo downloads everything locally. No external dependencies for the raw data once fetched.
+Includes a **branded web app** with semantic vector search and RAG chat powered by DeepSeek.
 
 ---
 
-## Quick Start
+## Quick Start (End-to-End)
+
+**Prerequisites:** Python 3.10+, Node.js 18+, network access for downloads, [DeepSeek API key](https://platform.deepseek.com/) for chat.
 
 ```bash
-# Clone the repo
 git clone https://github.com/napalm911/public-ufo-uap-evidence-archive.git
 cd public-ufo-uap-evidence-archive
 
-# Install dependencies
-pip install -r requirements.txt
+# Configure API key
+cp example.env .env
+# Edit .env and set DEEPSEEK_API_KEY=your_key_here
 
-# Run the full downloader (will take a while - thousands of files)
-python download-all.py
+# Full pipeline: setup → download → metadata → extract → index → build frontend
+make all
 
-# Or download a specific source
-python download-all.py --source fbi
-python download-all.py --source cia-crest
-python download-all.py --source aaro
+# Start the website
+make dev
+# Open http://localhost:8000
+```
+
+### Makefile Targets
+
+| Target | Description |
+|--------|-------------|
+| `make setup` | Create venv, install Python + Node deps, copy `.env` |
+| `make download` | Download all 13 document sources |
+| `make metadata` | Generate JSON indexes (timeline, topics, etc.) |
+| `make extract` | Extract plaintext from PDFs |
+| `make index` | Build ChromaDB vector index |
+| `make check` | Verify downloaded file integrity |
+| `make pipeline` | Run download → metadata → extract → index → check |
+| `make all` | setup + pipeline + build (full E2E) |
+| `make build` | Build frontend static assets |
+| `make dev` | Run API + serve built frontend on `:8000` |
+| `make dev-split` | API on `:8000` + Vite dev server on `:5173` |
+| `make test` | Run pytest suite (offline) |
+| `make demo` | Index fixture text for quick testing without download |
+| `make clean` | Remove venv, node_modules, vector store, caches |
+
+---
+
+## Web App
+
+The archive includes a **browse-first** research website:
+
+| Route | Purpose |
+|-------|---------|
+| `/` | Archive home — source cards, stats, links to Timeline & Topics |
+| `/sources/:key` | File list for a government source |
+| `/documents/:id` | Document detail — metadata, text preview, download |
+| `/timeline` | Chronological browse by date |
+| `/topics` | Thematic browse (hearings, AARO, legislation, etc.) |
+| `/ask` | RAG chat with DeepSeek (grounded in retrieved excerpts) |
+| `/search` | Semantic search over indexed text |
+
+**Navigation:** persistent sidebar (desktop) or bottom tabs (mobile). Every source, file, timeline entry, and topic is clickable. Citations in chat/search link to document pages.
+
+**Browse API:** `GET /api/documents`, `GET /api/timeline`, `GET /api/topics`, `GET /files/...` for original downloads.
+
+### Environment Variables
+
+Copy [`example.env`](example.env) to `.env`:
+
+| Variable | Description |
+|----------|-------------|
+| `DEEPSEEK_API_KEY` | Required for chat (get from DeepSeek) |
+| `DEEPSEEK_BASE_URL` | Default: `https://api.deepseek.com` |
+| `DEEPSEEK_MODEL` | Default: `deepseek-v4-flash` |
+| `EMBEDDING_PROVIDER` | `local` (default) or `openai` |
+| `EMBEDDING_MODEL` | Default: `all-MiniLM-L6-v2` |
+| `CHROMA_PATH` | Vector store location (default: `./data/vector_store`) |
+| `CHUNK_SIZE` / `CHUNK_OVERLAP` | Text chunking for indexing |
+| `TOP_K` | Number of chunks retrieved per query |
+| `HOST` / `PORT` | Server bind address |
+
+Embeddings run locally by default (no extra API key). DeepSeek handles chat generation only.
+
+---
+
+## Manual CLI Usage
+
+```bash
+# Install dependencies only
+make setup
+
+# Download specific source
+.venv/bin/python download-all.py --source fbi
+.venv/bin/python download-all.py --list
+
+# Regenerate metadata
+.venv/bin/python scripts/generate_metadata.py
+
+# Extract PDF text
+.venv/bin/python scripts/extract_text.py
+
+# Build vector index
+.venv/bin/python scripts/build_index.py --force
 ```
 
 ---
 
 ## Sources Included
 
-| # | Source | Type | Est. Docs | Status |
-|---|--------|------|-----------|--------|
-| 1 | **FBI Vault - UFO Files** | Declassified FBI records | ~2,000 pages | ✅ |
-| 2 | **CIA CREST Archive (UFO-related)** | Declassified CIA docs (25yr program) | ~500+ docs | ✅ |
-| 3 | **National Archives - Project Blue Book** | USAF investigation (1947-1969) | ~12,000+ reports | ✅ |
-| 4 | **ODNI UAP Preliminary Assessment (2021)** | Official intelligence assessment | 1 report | ✅ |
-| 5 | **AARO Historical Record Reports (2024)** | DoD UAP office reports | 2 reports + supplements | ✅ |
-| 6 | **NASA UAP Independent Study Report** | NASA study & findings | 1 report + briefings | ✅ |
-| 7 | **U.S. Navy UAP Videos (DoD-confirmed)** | Declassified military footage | 3 videos | ✅ |
-| 8 | **Pentagon AARO Briefings & Testimony** | Congressional testimony & press briefs | ~20 transcripts | ✅ |
-| 9 | **UAP Disclosure Act (NDAA) Language** | Legislation text | 5 law docs | ✅ |
-| 10 | **FOIA Collections (Black Vault index)** | Community FOIA archive index | 100,000+ pages indexed | ✅ |
-| 11 | **Department of Energy / NNSA Docs** | Nuclear security UFO docs | ~100 docs | ✅ |
-| 12 | **Congressional Hearings & Testimony** | UAP hearing transcripts (2022-2025) | ~15 transcripts | ✅ |
-| 13 | **Foreign Gov Releases (supplementary)** | UK, France, other releases | ~500 docs | ✅ |
+| # | Source | CLI key | Data dir |
+|---|--------|---------|----------|
+| 1 | FBI Vault - UFO Files | `fbi` | `data/fbi/` |
+| 2 | CIA CREST Archive | `cia-crest` | `data/cia_crest/` |
+| 3 | Project Blue Book | `blue-book` | `data/blue_book/` |
+| 4 | ODNI UAP Assessment (2021) | `odni` | `data/odni/` |
+| 5 | AARO Historical Record Reports | `aaro` | `data/aaro/` |
+| 6 | NASA UAP Independent Study | `nasa` | `data/nasa/` |
+| 7 | U.S. Navy UAP Videos | `navy-videos` | `data/navy_videos/` |
+| 8 | Pentagon AARO Briefings | `pentagon` | `data/pentagon/` |
+| 9 | UAP Disclosure Act / NDAA | `disclosure-act` | `data/disclosure_act/` |
+| 10 | FOIA Collections Index | `foia` | `data/foia/` |
+| 11 | DOE / NNSA Documents | `doe` | `data/doe/` |
+| 12 | Congressional Hearings | `congress` | `data/congress/` |
+| 13 | Foreign Government Releases | `foreign` | `data/foreign/` |
+
+---
 
 ## Directory Structure
 
 ```
 public-ufo-uap-evidence-archive/
-├── README.md                           # This file
-├── download-all.py                     # Main downloader script
-├── requirements.txt                    # Python deps
-├── sources/                            # Per-source downloaders
-│   ├── fbi_vault.py                   # FBI vault crawler
-│   ├── cia_crest.py                   # CIA CREST archive crawler
-│   ├── project_blue_book.py           # Project Blue Book
-│   ├── odni_report.py                 # ODNI assessment
-│   ├── aaro.py                        # AARO reports
-│   ├── nasa_uap.py                    # NASA UAP study
-│   ├── navy_videos.py                 # Navy UAP videos
-│   ├── pentagon_briefings.py          # Pentagon transcripts
-│   ├── disclosure_act.py              # Legislation
-│   ├── foia_collections.py            # FOIA archive index
-│   ├── doe_nnsa.py                    # DOE/NNSA docs
-│   ├── congressional_hearings.py      # Hearing transcripts
-│   └── foreign_releases.py            # Foreign gov releases
-├── data/                              # Downloaded data (gitignored)
-│   ├── fbi_vault/                    # FBI UFO files
-│   ├── cia_crest/                    # CIA UFO-related docs
-│   ├── project_blue_book/            # Blue Book files
-│   ├── odni_report/                  # ODNI report PDF
-│   ├── aaro/                         # AARO reports
-│   ├── nasa_uap/                     # NASA study
-│   ├── navy_videos/                  # Navy footage
-│   ├── pentagon_briefings/           # Transcripts
-│   ├── disclosure_act/              # Law documents
-│   ├── foia_collections/            # FOIA archive index
-│   ├── doe_nnsa/                    # DOE docs
-│   ├── congressional_hearings/      # Hearing transcripts
-│   └── foreign_releases/            # Foreign docs
-├── metadata/                          # Indexes & metadata for AI
-│   ├── master_index.json             # Combined metadata index
-│   ├── source_index.json             # Per-source summary
-│   ├── timeline.json                 # Chronological index
-│   └── topic_tags.json              # Topic-tagged document map
-├── analysis/                          # AI analysis outputs (user fills)
-│   ├── notebooks/                    # Example analysis notebooks
-│   └── reports/                      # Generated analysis reports
-└── scripts/                          # Utility scripts
-    ├── check_integrity.py            # Verify downloaded files
-    ├── generate_metadata.py          # Regenerate metadata index
-    └── extract_text.py               # OCR/PDF text extraction
+├── Makefile                    # End-to-end workflow
+├── example.env                 # Environment template
+├── download-all.py             # Main downloader
+├── requirements.txt            # Core Python deps
+├── requirements-web.txt        # API + vector search deps
+├── requirements-dev.txt        # Test deps
+├── api/                        # FastAPI backend (RAG + search)
+├── frontend/                   # React web app
+├── sources/                    # Per-source downloaders
+├── data/                       # Downloaded files (gitignored)
+├── metadata/                   # JSON indexes
+├── analysis/
+│   ├── extracted_text/         # PDF plaintext
+│   └── notebooks/              # Jupyter examples
+├── scripts/
+│   ├── generate_metadata.py
+│   ├── extract_text.py
+│   ├── build_index.py          # Vector indexing
+│   └── check_integrity.py
+└── tests/                      # Pytest suite
 ```
+
+---
 
 ## For AI Analysis
 
-Once downloaded, you can:
+Once downloaded and indexed:
 
-1. **Vector search:** Load all PDFs/text into a vector DB for semantic search
-2. **Cross-reference:** Correlate witness names, locations, dates across sources
-3. **Timeline analysis:** Map document chronology (use `metadata/timeline.json`)
-4. **Content extraction:** Run `scripts/extract_text.py` to extract plaintext from all PDFs
-5. **Training data:** Convert document extracts to fine-tuning format
+1. **Vector search:** Semantic search via the web app or `POST /api/search`
+2. **RAG chat:** Ask questions via the web app or `POST /api/chat`
+3. **Cross-reference:** Use `metadata/timeline.json` and `metadata/topic_tags.json`
+4. **Notebooks:** See `analysis/notebooks/01_basic_analysis.ipynb`
 
-Example Claude / GPT prompt:
-> "Using the documents in data/aaro/, data/odni_report/, and data/pentagon_briefings/, analyze the official U.S. government position on UAPs from 2021-2025, comparing the language in the ODNI Preliminary Assessment vs. the AARO Historical Record Report."
+Example prompt:
+> "Using documents from data/aaro/, data/odni/, and data/pentagon/, analyze the official U.S. government position on UAPs from 2021-2025."
+
+---
 
 ## Notes on What Trump Permitted / Signed
 
 - **Dec 2020:** Trump signed the **Intelligence Authorization Act for FY2021**, which included a provision requiring the ODNI to deliver a report on UAPs to Congress within 180 days. This led to the landmark June 2021 ODNI Preliminary Assessment.
 - **Trump's UAP comments:** Trump has stated in multiple interviews (OANN, Fox News) that he was "briefed" on UAPs, said the subject is "very interesting," and that he'd "declassify" more if asked — but no specific bulk declassification action occurred during his presidency beyond signing the NDAA provision.
 - **The real disclosure wave (2021-2025)** happened under Biden — but **Trump's 2020 NDAA signing** is the legislative trigger that started the modern UAP disclosure cycle.
+
+---
 
 ## License
 

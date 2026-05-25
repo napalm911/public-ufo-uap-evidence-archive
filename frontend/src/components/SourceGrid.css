@@ -1,0 +1,73 @@
+.source-grid-section {
+  margin-bottom: 3rem;
+}
+
+.source-grid-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.empty-hint {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.empty-hint code {
+  color: var(--accent);
+  background: var(--bg-card);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+}
+
+.source-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.source-card {
+  display: block;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  transition: border-color 0.15s;
+}
+
+.source-card:hover {
+  border-color: var(--accent-dim);
+}
+
+.source-card h3 {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.source-key {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.source-meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.8rem;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.source-types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.type-badge {
+  font-size: 0.65rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  color: var(--text-muted);
+}

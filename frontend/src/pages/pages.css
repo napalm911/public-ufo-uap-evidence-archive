@@ -1,0 +1,43 @@
+.browse-shortcuts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.shortcut-card {
+  display: block;
+  padding: var(--space-5);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: border-color 0.15s;
+}
+
+.shortcut-card:hover {
+  border-color: var(--accent-dim);
+}
+
+.shortcut-card h3 {
+  font-size: 1.1rem;
+  color: var(--text);
+  margin-bottom: var(--space-1);
+}
+
+.shortcut-card:hover h3 {
+  color: var(--accent);
+}
+
+.shortcut-card p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.page-footer {
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}

@@ -1,10 +1,25 @@
 {
-  "total_dated_entries": 7,
+  "total_dated_entries": 13,
   "entries": [
+    {
+      "date": "1960",
+      "file": "data/cia_crest/CIA_OSI_UFO_Assessment_1960.pdf",
+      "source": "cia_crest"
+    },
+    {
+      "date": "2020-04-27",
+      "file": "data/pentagon/_DoD_UAP_Video_Release_20200427.html",
+      "source": "pentagon"
+    },
     {
       "date": "2022-05-17",
       "file": "data/congress/House_Intel_Subcommittee_UAP_Hearing_20220517.pdf",
       "source": "congress"
+    },
+    {
+      "date": "2022-07-20",
+      "file": "data/pentagon/_DoD_AARO_Establishment_20220720.html",
+      "source": "pentagon"
     },
     {
       "date": "2022-07-26",
@@ -15,6 +30,11 @@
       "date": "2023",
       "file": "data/disclosure_act/NDAA_FY2023_UAP_Provisions.pdf",
       "source": "disclosure_act"
+    },
+    {
+      "date": "2023",
+      "file": "data/pentagon/_AARO_Director_SASC_Statement_202310.html",
+      "source": "pentagon"
     },
     {
       "date": "2023-07-26",
@@ -35,6 +55,16 @@
       "date": "2024-03-08",
       "file": "data/aaro/AARO_Historical_Record_Report_Executive_Summary_20240308.pdf",
       "source": "aaro"
+    },
+    {
+      "date": "2024-03-08",
+      "file": "data/pentagon/_DoD_AARO_HRR_Vol1_Release_20240308.html",
+      "source": "pentagon"
+    },
+    {
+      "date": "2024-11-14",
+      "file": "data/pentagon/_DoD_AARO_HRR_Vol2_Release_20241114.html",
+      "source": "pentagon"
     }
   ]
 }

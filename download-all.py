@@ -69,40 +69,18 @@ def run_source(key, info):
 
 
 def build_metadata_index():
-    """Walk the data directory and build a master index JSON."""
-    print("\nBuilding metadata index...")
-    master = {"sources": {}, "total_documents": 0, "total_files": 0}
-    
-    for source_key in SOURCES:
-        source_dir = DATA_DIR / source_key.replace("-", "_")
-        if not source_dir.exists():
-            continue
-        
-        files = list(source_dir.rglob("*"))
-        docs = [f for f in files if f.is_file() and f.name != ".gitkeep"]
-        source_meta = {
-            "name": SOURCES[source_key]["desc"],
-            "key": source_key,
-            "path": str(source_dir.relative_to(BASE_DIR)),
-            "file_count": len(docs),
-            "file_types": {},
-            "total_size_bytes": 0,
-        }
-        for f in docs:
-            ext = f.suffix.lower() or "(no ext)"
-            source_meta["file_types"][ext] = source_meta["file_types"].get(ext, 0) + 1
-            source_meta["total_size_bytes"] += f.stat().st_size
-        
-        master["sources"][source_key] = source_meta
-        master["total_documents"] += 1
-        master["total_files"] += len(docs)
-    
-    METADATA_DIR.mkdir(parents=True, exist_ok=True)
+    """Generate full metadata indexes via scripts/generate_metadata.py."""
+    import subprocess
+    script = BASE_DIR / "scripts" / "generate_metadata.py"
+    print("\nBuilding metadata indexes...")
+    result = subprocess.run([sys.executable, str(script)], cwd=str(BASE_DIR))
+    if result.returncode != 0:
+        sys.exit(result.returncode)
     index_path = METADATA_DIR / "master_index.json"
-    with open(index_path, "w") as f:
-        json.dump(master, f, indent=2)
-    print(f"  Written to {index_path}")
-    return master
+    if index_path.exists():
+        with open(index_path) as f:
+            return json.load(f)
+    return {}
 
 
 def main():

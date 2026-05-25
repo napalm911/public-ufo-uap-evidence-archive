@@ -1,0 +1,65 @@
+.file-row {
+  display: block;
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.file-row:hover {
+  border-color: var(--accent-dim);
+  background: var(--surface-hover);
+}
+
+.file-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.file-name {
+  color: var(--text);
+  font-size: 0.9rem;
+  word-break: break-word;
+}
+
+.file-row:hover .file-name {
+  color: var(--accent);
+}
+
+.file-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.type-badge {
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.type-pdf { color: var(--type-pdf); border: 1px solid var(--type-pdf); }
+.type-html { color: var(--type-html); border: 1px solid var(--type-html); }
+.type-video { color: var(--type-video); border: 1px solid var(--type-video); }
+.type-default { color: var(--text-muted); border: 1px solid var(--border); }
+
+.file-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.topic-pill {
+  font-size: 0.65rem;
+  color: var(--accent);
+  background: var(--bg-elevated);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+}

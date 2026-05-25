@@ -1,10 +1,15 @@
 data/
+!data/.gitkeep
 analysis/reports/
 __pycache__/
 *.pyc
 *.egg-info/
 .venv/
+.env
+.pytest_cache/
+data/vector_store/
+frontend/dist/
+frontend/node_modules/
 *.pdf
 *.mp4
 *.zip
-!data/.gitkeep

@@ -1,8 +1,22 @@
 {
   "aaro": {
     "file_count": 1,
-    "total_size_bytes": 42934,
-    "total_size_mb": 0.04,
+    "total_size_bytes": 726657,
+    "total_size_mb": 0.69,
+    "file_types": {
+      ".pdf": 1
+    }
+  },
+  "blue_book": {
+    "file_count": 0,
+    "total_size_bytes": 0,
+    "total_size_mb": 0.0,
+    "file_types": {}
+  },
+  "cia_crest": {
+    "file_count": 1,
+    "total_size_bytes": 6738642,
+    "total_size_mb": 6.43,
     "file_types": {
       ".pdf": 1
     }
@@ -23,9 +37,33 @@
       ".pdf": 2
     }
   },
+  "doe": {
+    "file_count": 0,
+    "total_size_bytes": 0,
+    "total_size_mb": 0.0,
+    "file_types": {}
+  },
+  "fbi": {
+    "file_count": 0,
+    "total_size_bytes": 0,
+    "total_size_mb": 0.0,
+    "file_types": {}
+  },
+  "foia": {
+    "file_count": 0,
+    "total_size_bytes": 0,
+    "total_size_mb": 0.0,
+    "file_types": {}
+  },
+  "foreign": {
+    "file_count": 0,
+    "total_size_bytes": 0,
+    "total_size_mb": 0.0,
+    "file_types": {}
+  },
   "nasa": {
     "file_count": 1,
-    "total_size_bytes": 264820,
+    "total_size_bytes": 266539,
     "total_size_mb": 0.25,
     "file_types": {
       ".html": 1
@@ -43,10 +81,12 @@
     "total_size_mb": 0.0,
     "file_types": {}
   },
-  "odni_report": {
-    "file_count": 0,
-    "total_size_bytes": 0,
-    "total_size_mb": 0.0,
-    "file_types": {}
+  "pentagon": {
+    "file_count": 5,
+    "total_size_bytes": 458531,
+    "total_size_mb": 0.44,
+    "file_types": {
+      ".html": 5
+    }
   }
 }

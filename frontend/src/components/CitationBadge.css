@@ -1,0 +1,49 @@
+.citation {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+}
+
+.citation summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent);
+}
+
+.citation summary::-webkit-details-marker {
+  display: none;
+}
+
+.citation-score {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  background: var(--bg);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}
+
+.citation-meta {
+  margin-top: 0.5rem;
+  color: var(--text-muted);
+}
+
+.citation-link {
+  color: var(--accent);
+}
+
+.citation-link:hover {
+  text-decoration: underline;
+}
+
+.citation-text {
+  margin-top: 0.5rem;
+  color: var(--text);
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
